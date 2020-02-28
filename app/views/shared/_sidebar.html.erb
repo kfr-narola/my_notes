@@ -1,0 +1,126 @@
+<div class="card" style="height:480px;overflow-y:auto;">
+  <div class="card">
+    <div class="">
+      <ul class="list-group list-group-flush" >
+        <%= link_to "+ Add New Note", new_note_path, remote:true, class:"list-group-item text-primary font-weight-bold" %>
+          <li class="list-group-item">
+            <%= form_with(url: search_path) do |form| %>
+              <div class="field">
+                  <%= form.text_field :search, class:"input form-control", id:"search_field", placeholder:"Search Notes here..", value:params[:search] %>
+              </div>
+              <div class="actions">
+                <%= form.submit "Search", id:"btn_search", class:"btn btn-primary btn-sm", style:"float:center;", style:"display:none;" %>
+              </div>
+            <% end %>
+          </li>
+          <li class="list-group-item">
+            <%= link_to autosave_path(current_user.autosave ? "false" : "true"), class:"text-success", remote:true do %>
+              <div class="custom-control custom-switch">
+                <input type="checkbox" class="custom-control-input" <%= current_user.autosave ? "checked":"" %> id="autosave_switch">
+                <label class="custom-control-label text-<%= current_user.autosave ? "primary":"dark" %>" for="customSwitch1" style="font-size:18px;padding-top:2px;"> Autosave</label>
+              </div>
+            <% end %>
+          </li>
+        </ul>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <ul class="nav nav-pills " id="pills-tab" role="tablist">
+        <li class="nav-item">
+          <a class="nav-link active" id="pills-my-tab" data-toggle="pill" href="#pills-my" role="tab" aria-controls="pills-my" aria-selected="true">My Notes</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="pills-shared-tab" data-toggle="pill" href="#pills-shared" role="tab" aria-controls="pills-shared" aria-selected="false">Shared with Me</a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="">
+      <div class="tab-content" id="pills-tabContent">
+        <div class="tab-pane fade show active" id="pills-my" role="tabpanel" aria-labelledby="pills-my-tab">
+
+          <ul class="list-group list-group-flush list-group-item" style="">
+            <li class="list-group-item"><b>Notes List</b></li>
+            <% if !notes_list.nil?  %>
+              <% notes_list.each do |note| %>
+                <li class="list-group-item <% note == @note ? "list-group-item-info" : "" %>">
+                  <%= link_to note.title, note_path(note), class:"text-dark", remote:true %>
+                  <div class="" style="float:right;">
+                    <%= link_to mark_important_path(note, note.important==1 ? 0 : 1), class: note.important==1 ? "text-primary" : "text-dark" , remote:true do %>
+                      <% if note.important? %>
+                        <%= fa_icon "star", class:"text-primary ic", "data-toggle":"tooltip", "data-html":"true", title:"Remove Mark as Important" %>
+                      <% else %>
+                        <%= fa_icon "star", class:"text-default ic", "data-toggle":"tooltip", "data-html":"true", title:"Mark as Important" %>
+                      <% end %>
+                    <% end %>
+
+                    <% if can? :update, note %>
+                    &nbsp;
+                      <%= link_to edit_note_path(note), class:"text-success", remote:true do %>
+                        <%= fa_icon "pencil", class:"ic", "data-toggle":"tooltip", "data-html":"true", title:"Edit this note." %>
+                      <% end %>
+                    <% end %>
+                    <% if can? :delete, note %>
+                    &nbsp;
+                      <%= link_to note, method: :delete, data: { confirm: 'Are you sure?' }, class:"text-danger", "data-toggle":"tooltip", "data-html":"true", title:"Delete this note.", remote:true  do %>
+                        <%= fa_icon "trash", class:"ic" %>
+                      <% end %>
+                    <% end %>
+                  </div>
+                </li>
+              <% end %>
+            <% end %>
+          </ul>
+
+        </div>
+        <div class="tab-pane fade" id="pills-shared" role="tabpanel" aria-labelledby="pills-shared-tab">
+          <ul class="list-group list-group-flush list-group-item" style="">
+            <li class="list-group-item"><b>Shared Notes</b></li>
+            <% if !@permission_notes_list.nil? %>
+              <% @permission_notes_list.each do | shared_note | %>
+                <% note = shared_note.note %>
+                <li class="list-group-item">
+                  <%= link_to note.title, note_path(note), class:"text-dark", remote:true %>
+                  <div class="" style="float:right;">                    
+                    <% if can? :update, note %>
+                    &nbsp;
+                      <%= link_to edit_note_path(note), class:"text-success", remote:true do %>
+                        <%= fa_icon "pencil", class:"ic", "data-toggle":"tooltip", "data-html":"true", title:"Edit this note." %>
+                      <% end %>
+                    <% end %>
+                    <% if can? :delete, note %>
+                    &nbsp;
+                      <%= link_to note, method: :delete, data: { confirm: 'Are you sure?' }, class:"text-danger", "data-toggle":"tooltip", "data-html":"true", title:"Delete this note.", remote:true  do %>
+                        <%= fa_icon "trash", class:"ic" %>
+                      <% end %>
+                    <% end %>
+                  </div>
+                </li>
+              <% end %>
+              <% if @permission_notes_list.count == 0 %>
+                <li class="list-group-item">No notes available.</li>
+              <% end %>
+            <% end %>
+          </ul>
+        </div>
+        <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab"></div>
+      </div>
+
+    </div>
+  </div>
+
+
+
+
+</div>
+<script type="text/javascript">
+$("#search_field").on("keyup",function(){
+  if(this.value.length > 0){
+    $("#btn_search").fadeIn(500);
+  }else{
+    $("#btn_search").fadeOut(500);
+  }
+});
+</script>

@@ -1,0 +1,19 @@
+$('#main_alert').html("<div class='alert alert-success' role='alert'>Notes was successfully updated.</div>");
+$("#note_body").html("<%= j render 'show', note:@note %>");
+$("#note_body").append("<%= j render 'comments/index', comments:@note.comments.paginate(page: params[:page]?params[:page]:1), note:@note %>");
+$('.pagination a').attr('data-remote', 'true');
+$('#sidebar').html("<%= j render'shared/sidebar', notes_list: @notes_list %>");
+
+
+
+// if(autoupdate==1){
+//   $(".modal-body").html("<%= j render 'form', note:@note, id:"form_edit", url:note_path %>");
+//   $(".modal-title").html("Edit Notes");
+//   $('#modal').modal('show');
+// }else{
+//   $('#main_alert').html("<div class='alert alert-success' role='alert'>Notes was successfully updated.</div>");
+//   $("#note_body").html("<%= j render 'show', note:@note %>");
+//   $("#note_body").append("<%= j render 'comments/index', comments:@note.comments.paginate(page: params[:page]?params[:page]:1), note:@note %>");
+//   $('.pagination a').attr('data-remote', 'true');
+//   $('#sidebar').html("<%= j render'shared/sidebar', notes_list: @notes_list %>");
+// }

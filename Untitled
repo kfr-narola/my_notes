@@ -1,0 +1,28 @@
+<%= f.fields_for do | frm | %>
+  <div class="field">
+    <%= frm.label :name %>
+    <%= frm.text_field :username, autofocus: true, autocomplete: "email", class:"form-control", placeholder:"Enter Your Name" %>
+  </div>
+
+  <div class="field">
+    <%= frm.label :phone %>
+    <%= frm.number_field :phone, autofocus: true, autocomplete: "phone", class:"form-control", placeholder:"Enter Your Phone Number" %>
+  </div>
+
+  <div class="field">
+    <%= frm.label :gender %><br/>
+    <div class="form-check form-check-inline">
+      <%= frm.radio_button :gender, "Male", id:"male", class:"form-check-input", value:"0" %>
+      <label class="form-check-label" for="male">Male</label>
+    </div>
+    <div class="form-check form-check-inline">
+      <%= frm.radio_button :gender, "Female", id:"female", class:"form-check-input", value:"1" %>
+      <label class="form-check-label" for="female">Female</label>
+    </div>
+  </div>
+
+  <div class="field">
+    <%= frm.label :birthdate %>
+    <%= frm.text_field:birthdate, class:"form-control datepicker", autofocus: true, autocomplete: "birthdate", placeholder:"Enter Your Phone Number" %>
+  </div>
+<% end %>

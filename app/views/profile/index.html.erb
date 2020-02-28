@@ -1,0 +1,111 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-3">
+      <div class="card" style="">
+        <br>
+        <br>
+          <center>
+        <% if @profile.avatar.attached? %>
+          <img class="icon" src="<%= Rails.application.routes.url_helpers.rails_blob_path(@profile.avatar, only_path: true) %>" style="width:100px;height:100px;border-radius:100%;" alt="">
+        <% else %>
+          <img class="icon" src="icon.jpeg" style="width:100px;height:100px;border-radius:100%;" alt="">
+        <% end %>
+          </center>
+        <br>
+        <br>
+      </div>
+    </div>
+    <div class="col-sm-9">
+      <div class="card">
+        <div class="card-header">
+          <b>User Profile</b>
+          <div class="" style="float:right;">
+            <a class="text-success" data-toggle="modal" data-target="#Edit_profile" >Edit Profile</a>
+          </div>
+        </div>
+        <div class="card-body">
+          <table>
+            <tr>
+              <td><b>Username</b></td>
+              <td>: <%= @profile.username %> </td>
+            </tr>
+            <tr>
+              <td><b>Email</b></td>
+              <td>: <%= current_user.email %></td>
+            </tr>
+            <tr>
+              <td><b>Gender </b></td>
+              <td>:   <%= @profile.gender %></td>
+            </tr>
+            <tr>
+              <td><b>Phone </b></td>
+              <td>:   <%= @profile.phone %></td>
+            </tr>
+            <tr>
+              <td><b>Birthdate </b></td>
+              <td>:   <%= @profile.birthdate %></td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+  <!--Start Model-->
+  <!-- Button trigger modal -->
+
+<!-- Modal -->
+<div class="modal fade" id="Edit_profile" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Edit Profile Details</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <%= form_with(model: @profile, url: profile_edit_path, local: true) do |form| %>
+          <div class="field">
+            <div class="input-group mb-2">
+              <div class="input-group-prepend">
+                <div class="input-group-text">Username</div>
+              </div>
+              <%= form.text_field:username, class:"form-control" %>
+            </div>
+          </div>
+
+          <div class="field">
+            <div class="input-group mb-2">
+              <div class="input-group-prepend">
+                <div class="input-group-text">Phone</div>
+              </div>
+              <%= form.number_field:phone, class:"form-control" %>
+            </div>
+          </div>
+
+          <div class="field">
+            <div class="input-group mb-2">
+              <div class="input-group-prepend">
+                <div class="input-group-text">Birthdate</div>
+              </div>
+              <%= form.text_field:birthdate, class:"form-control datepicker"  %>
+              </div>
+          </div>
+          <%= form.file_field :avatar %>
+          <%= form.submit "Save", class:"btn btn-primary btn-md" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+  <!--End Model-->
+
+
+  <script type="text/javascript">
+    $(document).ready(function(){
+      $('.datepicker').datepicker();
+    });
+  </script>

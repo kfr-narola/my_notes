@@ -1,0 +1,10 @@
+<%= form_with(model: comment, url: url, remote:true) do |form| %>
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_field :description, class:"form-control" %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit "Add Comment", class:"btn btn-primary" %>
+  </div>
+<% end %>

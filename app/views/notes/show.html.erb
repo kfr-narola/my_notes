@@ -1,0 +1,24 @@
+<div class="container-fluid">
+  <div class="row justify-content-start " style="">
+    <div class="col-sm-3 " id="sidebar" style="position:fixed;">
+      <%= render "shared/sidebar", notes_list: @notes_list %>
+    </div>
+    </div>
+    <div class="row justify-content-end">
+    <div class="col align-self-center col-sm-9" style="">
+      <div class="" id="note_body">
+        <div class="card">
+          <div class="card-body">
+            <%= render 'show', note:@note %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+  $("#note_body").html("<%= j render 'show', note:@note %>");
+  $("#note_body").append("<%= j render 'comments/index', comments:@note.comments.paginate(page: params[:page]?params[:page]:1), note:@note %>");
+  $('.pagination a').attr('data-remote', 'true');
+</script>

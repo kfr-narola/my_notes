@@ -1,0 +1,23 @@
+<%= form_with(url: sharenote_path(note)) do |form| %>
+  <div class="field">
+    <div class="input-group mb-2">
+      <div class="input-group-prepend">
+        <div class="input-group-text">Note Title</div>
+      </div>
+      <%= form.text_field :email, class:"input form-control", placeholder:"Enter Email" %>
+    </div>
+  </div>
+  <div class="field">
+    <div class="custom-control custom-switch">
+      <input type="checkbox" name="user_edit" class="custom-control-input" id="edit_switch">
+      <label class="custom-control-label" for="edit_switch">Give Notes Edit <%= fa_icon "pencil" %> Permission</label>
+    </div>
+  </div>
+  <hr/>
+  <div class="actions">
+      <%= form.submit "Share", class: "btn btn-primary", style: "float:center;" %>
+      <button type="button" name="button" class="btn btn-danger" data-dismiss="modal" aria-label="Close">
+        close
+      </button>
+  </div>
+<% end %>

@@ -1,0 +1,5 @@
+$('#modal').modal('hide')
+$('#main_alert').html("<div class='alert alert-success' role='alert'>Comment was successfully inserted.</div>");
+$("#note_body").html("<%= j render 'notes/show', note:@note %>");
+$("#note_body").append("<%= j render 'index', comments:@note.comments.paginate(page:1), note:@note %>");
+$('.pagination a').attr('data-remote', 'true');

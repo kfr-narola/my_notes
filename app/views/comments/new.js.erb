@@ -1,0 +1,3 @@
+$(".modal-body").html("<%= j render 'comments/form', comment:@comment, url:note_comments_path %>");
+$(".modal-title").html("Add New Comment");
+$('#modal').modal('show')

@@ -1,0 +1,3 @@
+$(".modal-body").html("<%= j render 'form', note:@note, id:'form_new', url:notes_path %>");
+$(".modal-title").html("Edit Notes");
+$('#modal').modal('show')

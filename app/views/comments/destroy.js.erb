@@ -1,0 +1,5 @@
+$('#comment_' + "<%= @comment_id %>").fadeOut();
+$('#main_alert').html("<div class='alert alert-success' role='alert'>Comment was successfully deleted.</div>");
+if(!<%= @comments_count %>){
+ $('.comment_body').html("<div class='alert alert-info' role='alert'>Your notes have no any comments.</div>");
+}

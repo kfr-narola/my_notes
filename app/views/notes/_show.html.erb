@@ -1,0 +1,42 @@
+<div class="card">
+  <div class="card-header">
+    <text class="" id="note_title">
+      <%= note.title %>
+    </text>
+      <div class="" style="float:right;">
+        <% if note.user == current_user %>
+          <%= link_to form_share_note_path(note), class:"text-primary note_link", remote:true do %>
+            Share <%= fa_icon "share" %>
+          <% end %>
+        <% end %>
+        &nbsp;
+        <% if can? :update, note %>
+          <%= link_to edit_note_path(note), class:"text-success note_link", remote:true do %>
+            Edit <%= fa_icon "pencil" %>
+          <% end %>
+        <% else %>
+          <%= link_to request_note_edit_path(note,note.user), class:"text-secondary note_link" do %>
+            Send Request Edit <%= fa_icon "pencil" %>
+          <% end %>
+        <% end %>
+        &nbsp;
+
+        <% if can? :delete, note %>
+          <%= link_to note, method: :delete, data: { confirm: 'Are you sure?' }, remote:true, class:"text-danger"  do %>
+            Delete <%= fa_icon "trash" %>
+          <% end %>
+        <% end %>
+      </div>
+  </div>
+  <div class="card-body">
+    <text class="" id="note_description">
+      <%= simple_format(note.description) %>
+    </text>
+  </div>
+    <div class="card-footer">
+      Tags :
+      <% note.tags.each do | tag | %>
+        <span class="badge badge-primary"><%= tag %></span>
+      <% end %>
+    </div>
+</div>

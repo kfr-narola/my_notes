@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>MyNotes</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <%= render "shared/header" %>
+    <!-- TODO: Need to improve -->
+    <div class="container">
+      <div class="notify">
+
+
+        <div id="main_notice">
+          <% if !notice.nil? %>
+            <div class="alert alert-success" role="alert">
+              <%= notice %>
+            </div>
+            <% end %>
+        </div>
+
+        <div id="main_alert"  >
+          <% if !alert.nil? %>
+            <div class="alert alert-danger" role="alert">
+              <%= alert %>
+            </div>
+          <% end %>
+        </div>
+
+      </div>
+    </div>
+    <%= yield %>
+  </body>
+  <%= render 'shared/modal' %>
+  <script type="text/javascript">
+    $
+    $('#modal').on('show.bs.modal', function (e) {
+
+      $('input.tokenize').tokenfield();
+      $('#tokenfield').tokenfield({
+        autocomplete: {
+          source: ['red','blue','green','yellow','violet','brown','purple','black','white'],
+          delay: 100
+        },
+        showAutocompleteOnFocus: true
+      });
+
+      // $('.wysihtml5').each(function(i, elem) {
+      //   $(elem).wysihtml5({
+      //     toolbar:{
+      //       "fa": true,
+      //       "font-styles": true,
+      //       'blockquote': false,
+      //       'color': true,
+      //       'html': true }
+      //     });
+      // });
+
+
+    })
+
+  </script>
+</html>

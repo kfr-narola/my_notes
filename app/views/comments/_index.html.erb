@@ -1,0 +1,32 @@
+<br/>
+<div class="card">
+  <div class="card-header">
+    Comments
+    <div class="" style="float:right;">
+      <%= link_to "Add New Commment",new_note_comment_path(note), class:"text-primary", remote:true   %>
+    </div>
+  </div>
+  <div class="card-body">
+    <% if comments.count == 0 %>
+      <div class="alert alert-danger">
+        You have not any comments.
+      </div>
+    <% else %>
+      <% comments.each do | comment | %>
+        <div class="alert alert-info" id="comment_<%= comment.id%>">
+          <%= comment.description %>
+          <div class="" style="float:right;">
+            <%= link_to edit_note_comment_path(note,comment), class:"text-success" do %>
+              Edit <%= fa_icon "pencil" %>
+            <% end %>
+            &nbsp;
+            <%= link_to note_comment_path(note,comment), remote:true, method: :delete, data: { confirm: 'Are you sure?' }, class:"text-danger delete_comment"  do %>
+              Delete <%= fa_icon "trash" %>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+      <%= will_paginate comments, previous_label:"Previos", next_label:"Next", class:"pagination justify-content-center", link_separator:"<li class='page-item'>",remote:true %>
+    <% end %>
+  </div>
+</div>

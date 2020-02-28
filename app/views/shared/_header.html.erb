@@ -1,0 +1,25 @@
+<nav class="navbar navbar-expand-lg bg-dark navbar-dark fixed-top">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+    <%= link_to 'My Notes', root_path, class: 'navbar-brand' %>
+    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+      </li>
+    </ul>
+    <!-- Dropdown -->
+    <ul class="navbar-nav my-2 my-lg-0">
+      <li class="nav-item nav-justify-content-end dropdown dropdown">
+        <a class="nav-link dropdown-toggle " href="#" id="navbardrop" data-toggle="dropdown"> Profile </a>
+        <div class="dropdown-menu dropdown-menu-right">
+          <%= link_to "Details", profile_path, class: "dropdown-item" %>
+          <div class="dropdown-divider"></div>
+          <%= link_to "Logout", destroy_user_session_path, method: :DELETE, class: "dropdown-item" %>
+        </div>
+      </li>
+    </ul>
+  </div>
+</nav>
+<br/><br/><br/>
