@@ -88,3 +88,5 @@ gem 'bootstrap-wysihtml5-rails'
 gem 'devise_invitable'
 
 gem 'cancancan'
+
+gem 'bullet'
