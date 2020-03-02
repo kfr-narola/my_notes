@@ -10,23 +10,16 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require rails-ujs
-//= require activestorage
-//= require turbolinks
-//= require app
-//= require_tree .
-
 //= require jquery
-//= require jquery3
+//= require jquery_ujs
 //= require popper
-//= require bootstrap-sprockets
-
+//= require bootstrap
+//= require activestorage
 //= require bootstrap-datepicker
 //= require bootstrap-tokenfield
-
 //= require bootstrap-wysihtml5
+//= require my_script
+//= require turbolinks
+//= require_tree .
 
-
-$(function () {
-  $('[data-toggle="tooltip"]').tooltip()
-})
+@import "admin/*"

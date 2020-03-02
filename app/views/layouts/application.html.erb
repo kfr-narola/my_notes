@@ -38,28 +38,21 @@
   </body>
   <%= render 'shared/modal' %>
   <script type="text/javascript">
-    $
+
     $('#modal').on('show.bs.modal', function (e) {
 
       $('input.tokenize').tokenfield();
-      $('#tokenfield').tokenfield({
-        autocomplete: {
-          source: ['red','blue','green','yellow','violet','brown','purple','black','white'],
-          delay: 100
-        },
-        showAutocompleteOnFocus: true
-      });
 
-      // $('.wysihtml5').each(function(i, elem) {
-      //   $(elem).wysihtml5({
-      //     toolbar:{
-      //       "fa": true,
-      //       "font-styles": true,
-      //       'blockquote': false,
-      //       'color': true,
-      //       'html': true }
-      //     });
-      // });
+      $('.wysihtml5').each(function(i, elem) {
+        $(elem).wysihtml5({
+          toolbar:{
+            "fa": true,
+            "font-styles": true,
+            'blockquote': false,
+            'color': true,
+            'html': true }
+          });
+      });
 
 
     })

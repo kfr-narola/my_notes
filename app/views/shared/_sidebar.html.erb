@@ -5,19 +5,17 @@
         <%= link_to "+ Add New Note", new_note_path, remote:true, class:"list-group-item text-primary font-weight-bold" %>
           <li class="list-group-item">
             <%= form_with(url: search_path) do |form| %>
-              <div class="field">
-                  <%= form.text_field :search, class:"input form-control", id:"search_field", placeholder:"Search Notes here..", value:params[:search] %>
-              </div>
-              <div class="actions">
-                <%= form.submit "Search", id:"btn_search", class:"btn btn-primary btn-sm", style:"float:center;", style:"display:none;" %>
-              </div>
+                <%= form.text_field :search, class:"form-control", id:"search_field", placeholder:"Search Notes here..", value:params[:search] %>
+                  <div class="" style="padding-top:7px;display:none;" id="btn_search">
+                    <%= form.submit "Search", class:"btn btn-primary btn-sm", style:"float:center;"%>
+                  </div>
             <% end %>
           </li>
           <li class="list-group-item">
             <%= link_to autosave_path(current_user.autosave ? "false" : "true"), class:"text-success", remote:true do %>
               <div class="custom-control custom-switch">
                 <input type="checkbox" class="custom-control-input" <%= current_user.autosave ? "checked":"" %> id="autosave_switch">
-                <label class="custom-control-label text-<%= current_user.autosave ? "primary":"dark" %>" for="customSwitch1" style="font-size:18px;padding-top:2px;"> Autosave</label>
+                <label class="custom-control-label text-<%= current_user.autosave ? "primary":"dark" %>" for="customSwitch1" style="font-size:18px;"> Autosave</label>
               </div>
             <% end %>
           </li>
@@ -46,7 +44,7 @@
             <% if !notes_list.nil?  %>
               <% notes_list.each do |note| %>
                 <li class="list-group-item <% note == @note ? "list-group-item-info" : "" %>">
-                  <%= link_to note.title, note_path(note), class:"text-dark", remote:true %>
+                  <%= link_to note.title, note_path(note), class:"text-dark d-inline-block text-truncate", style:"max-width:150px;", remote:true %>
                   <div class="" style="float:right;">
                     <%= link_to mark_important_path(note, note.important==1 ? 0 : 1), class: note.important==1 ? "text-primary" : "text-dark" , remote:true do %>
                       <% if note.important? %>
@@ -83,7 +81,7 @@
                 <% note = shared_note.note %>
                 <li class="list-group-item">
                   <%= link_to note.title, note_path(note), class:"text-dark", remote:true %>
-                  <div class="" style="float:right;">                    
+                  <div class="" style="float:right;">
                     <% if can? :update, note %>
                     &nbsp;
                       <%= link_to edit_note_path(note), class:"text-success", remote:true do %>

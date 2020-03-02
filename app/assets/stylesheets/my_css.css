@@ -1,0 +1,24 @@
+body{
+  background-color: #996600 !important;
+}
+h2{
+  color:$primary;
+}
+.ic{
+  transition: 1s;
+}
+.ic:hover{
+  transition: 0.2s;
+  transform: scale(1.4);
+}
+.notify{
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  padding-right: 20px;
+  padding-bottom: 20px;
+  z-index: 1;
+}
+.toast{
+  padding-bottom: 4px;
+}

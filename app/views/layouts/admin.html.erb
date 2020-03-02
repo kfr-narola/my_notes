@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>AdminLTE 3 | Dashboard</title>
+  <!-- Tell the browser to be responsive to screen width -->
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <%= stylesheet_link_tag    'admin', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css">
+  <%= javascript_include_tag 'admin', 'data-turbolinks-track': 'reload' %>
+</head>
+<body class="hold-transition sidebar-mini layout-fixed">
+<div class="wrapper">
+
+  <!-- Navbar -->
+  <%= render "shared/admin_header" %>
+  <!-- /.navbar -->
+
+  <!-- Main Sidebar Container -->
+  <%= render "shared/admin_sidebar" %>
+  <!-- /.main Sidebar Container -->
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+
+    <div class="container">
+      <div class="notify">
+
+
+        <div id="main_notice">
+          <% if !notice.nil? %>
+            <div class="alert alert-success" role="alert">
+              <%= notice %>
+            </div>
+            <% end %>
+        </div>
+
+        <div id="main_alert"  >
+          <% if !alert.nil? %>
+            <div class="alert alert-danger" role="alert">
+              <%= alert %>
+            </div>
+          <% end %>
+        </div>
+
+      </div>
+    </div>
+    <div class="container">
+      <div class="notify">
+
+        <div id="main_notice">
+          <% if !notice.nil? %>
+            <div class="alert alert-success" role="alert">
+              <%= notice %>
+            </div>
+            <% end %>
+        </div>
+
+        <div id="main_alert"  >
+          <% if !alert.nil? %>
+            <div class="alert alert-danger" role="alert">
+              <%= alert %>
+            </div>
+          <% end %>
+        </div>
+
+      </div>
+    </div>
+    <%= yield %>
+
+  </div>
+  <!-- /.content-wrapper -->
+  <footer class="main-footer">
+    <strong>Copyright &copy; 2014-2019 <a href="http://adminlte.io">AdminLTE.io</a>.</strong>
+    All rights reserved.
+    <div class="float-right d-none d-sm-inline-block">
+      <b>Version</b> 3.0.2
+    </div>
+  </footer>
+
+  <%= render 'shared/modal' %>
+  <script type="text/javascript">
+
+    $('#modal').on('show.bs.modal', function (e) {
+
+      $('input.tokenize').tokenfield();
+      //
+      // $('.wysihtml5').each(function(i, elem) {
+      //   $(elem).wysihtml5({
+      //     toolbar:{
+      //       "fa": true,
+      //       "font-styles": true,
+      //       'blockquote': false,
+      //       'color': true,
+      //       'html': true }
+      //     });
+      // });
+    })
+
+  </script>
+</div>
+<!-- ./wrapper -->
+
+</body>
+
+
+</html>
