@@ -10,39 +10,12 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
- *= require_tree .
- *= require_self
  *= require font-awesome
-
  *= require bootstrap-datepicker
- # Or if using bootstrap v3:
- *= require bootstrap-datepicker3
  *= require bootstrap-tokenfield
  *= require bootstrap-wysihtml5
+ *= require my_css
+ *= require_self
+ * require_tree .
  */
  @import "bootstrap";
-
- body{
-   background-color: #996600;
- }
- h2{
-   color:$primary;
- }
- .ic{
-   transition: 1s;
- }
- .ic:hover{
-   transition: 0.2s;
-   transform: scale(1.4);
- }
- .notify{
-   position: fixed;
-   bottom: 0;
-   right: 0;
-   padding-right: 20px;
-   padding-bottom: 20px;
-   z-index: 1;
- }
- .toast{
-   padding-bottom: 4px;
- }

@@ -20,7 +20,6 @@ class Note < ApplicationRecord
   # require
   # validations
 
-
   private
 
   def remove_note_comments

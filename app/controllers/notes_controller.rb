@@ -8,7 +8,6 @@ class NotesController < ApplicationController
   # GET /notes
   # GET /notes.json
   def index
-
   end
 
   # GET /notes/1
@@ -61,7 +60,7 @@ class NotesController < ApplicationController
   def update
     respond_to do |format|
       if @note.update(note_params)
-        @notes_list = Note.all
+        set_sidebar
         format.html { redirect_to @note, notice: 'Note was successfully updated.' }
         format.json { render :show, status: :ok, location: @note }
         format.js { render :layout => false }
@@ -148,7 +147,7 @@ class NotesController < ApplicationController
     note = current_user.notes.find_by(id:params[:id])
     user = User.find_by(id:params[:user])
     user.permissions.find_by(note_id: note.id).update(access:1)
-    redirect_to root_path, notice: "#{user.name} have assign edit Permission of notes #{note.title} successfully."
+    redirect_to root_path, notice: "#{user.profile.username} have assign edit Permission of notes #{note.title} successfully."
   end
 
   private
@@ -156,6 +155,7 @@ class NotesController < ApplicationController
   def set_sidebar
     @notes_list = current_user.notes
     @permission_notes_list = current_user.permissions
+    puts current_user.id
   end
 
   def set_note

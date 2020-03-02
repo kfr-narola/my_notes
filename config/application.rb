@@ -8,10 +8,6 @@ Bundler.require(*Rails.groups)
 
 module MyNotes
   class Application < Rails::Application
-
-    config.to_prepare do
-      Devise::SessionsController.layout 'admin_lte_2_login'
-    end
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 5.2
 

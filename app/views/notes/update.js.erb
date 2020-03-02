@@ -2,7 +2,7 @@ $('#main_alert').html("<div class='alert alert-success' role='alert'>Notes was s
 $("#note_body").html("<%= j render 'show', note:@note %>");
 $("#note_body").append("<%= j render 'comments/index', comments:@note.comments.paginate(page: params[:page]?params[:page]:1), note:@note %>");
 $('.pagination a').attr('data-remote', 'true');
-$('#sidebar').html("<%= j render'shared/sidebar', notes_list: @notes_list %>");
+$('#sidebar').html("<%= j render'shared/sidebar', notes_list: @notes_list, permission_notes_list: @permission_notes_list %>");
 
 
 

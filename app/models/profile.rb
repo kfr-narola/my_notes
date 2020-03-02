@@ -1,7 +1,7 @@
 class Profile < ApplicationRecord
   has_one_attached :avatar
   # associations
-  belongs_to :user, optional: true
+  belongs_to :user
   # attr_accessors
   # callbacks
   # constants
