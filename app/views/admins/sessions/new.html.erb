@@ -1,28 +1,50 @@
-<% content_for :body do %>
-<h2>Log in</h2>
-
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="form-group">
-    <%= f.label :email, class:"label" %><br />
-    <%= f.email_field :email, class:"form-control", placeholder:"Enter Your Email", autofocus: true, autocomplete: "email" %>
+<div class="login-box">
+  <div class="login-logo">
+    <a href="../../index2.html"><b>Admin</b>Panel</a>
   </div>
+  <!-- /.login-logo -->
+  <div class="card">
+    <div class="card-body login-card-body">
+      <p class="login-box-msg">Sign in to start your session</p>
 
-  <div class="form-group">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, class:"form-control", placeholder:"Enter Password", autocomplete: "current-password" %>
-  </div>
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+        <div class="input-group mb-3">
+          <%= f.email_field :email, class:"form-control", placeholder:"Enter Your Email", autofocus: true, autocomplete: "email" %>
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <%= fa_icon "envelope", class:"ic" %>
+            </div>
+          </div>
+        </div>
+        <div class="input-group mb-3">
+          <%= f.password_field :password, class:"form-control", placeholder:"Enter Password", autocomplete: "current-password" %>
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <%= fa_icon "lock", class:"ic" %>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <% if devise_mapping.rememberable? %>
+            <div class="col-8">
+              <div class="icheck-primary">
+                <%= f.check_box :remember_me , id: "remember"%>
+                <label for="remember">
+                  Remember Me
+                </label>
+              </div>
+            </div>
+          <% end %>
+          <!-- /.col -->
+          <div class="col-sm text-center">
+            <%= f.submit "Log in", class:"btn btn-primary" %>
+          </div>
+          <!-- /.col -->
+        </div>
+        <% end %>
 
-  <% if devise_mapping.rememberable? %>
-    <div class="form-group">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
     </div>
-  <% end %>
-
-  <div class="actions">
-    <%= f.submit "Log in", class:"btn btn-primary" %>
+    <!-- /.login-card-body -->
   </div>
-<% end %>
-
-<%= render "admins/shared/links" %>
-<% end %>
+</div>
+<!-- /.login-box -->

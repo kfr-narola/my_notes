@@ -1,12 +1,8 @@
-/*
-*= require bootstrap-tokenfield
-*= require bootstrap-wysihtml5
-*= require font-awesome
-*= require my_css
-*/
-@import "admin/*";
 body{
-  background-color: #e9ecef !important;
+  background-color: #996600 !important;
+}
+h2{
+  color: $primary;
 }
 .ic{
   transition: 1s;
@@ -25,4 +21,17 @@ body{
 }
 .toast{
   padding-bottom: 4px;
+}
+.sidebar{
+  height: 480px;
+  overflow-y: auto;
+}
+.note_title{
+  max-width:150px;
+}
+.important-true{
+  color: blue;
+}
+.important-false{
+  color: black;
 }

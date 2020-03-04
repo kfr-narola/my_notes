@@ -1,0 +1,6 @@
+$(".modal-body").html("<%= j render 'note_form', note:@note, id: 'form_edit', url: update_notes_admins_dashboard_index_path %>");
+$(".modal-title").html("Edit Notes");
+$('#modal').modal('show');
+
+
+var autoupdate = 0;

@@ -15,21 +15,14 @@ class NotesController < ApplicationController
   def show
     # @comments = @note.comments.reverse_order.limit(10).paginate(page: params[:page], per_page: 10)
     @note = Note.find_by(id:params[:id])
-    if !can? :read, @note
-      redirect_to root_path, notice:"You are not authorized to access this page."
-    end
+    redirect_to root_path, alert: "You are not authorized to access this page." unless can? :read, @note
   end
 
   # GET /notes/new
   def new
     @note = current_user.notes.new
-    if current_user.autosave
-      @note.title = "New Note"
-      @note.description = "Write here.."
-      @note.save
-      respond_to do |format|
-        format.js { redirect_to edit_note_path(@note) }
-      end
+    respond_to do |format|
+      format.js { redirect_to edit_note_path(@note) }
     end
   end
 

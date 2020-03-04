@@ -12,7 +12,6 @@ class User < ApplicationRecord
   # callbacks
   # constants
   # enums
-  enum role: %i[ user admin ]
   # includes
   # method
   # nested_attribute_for_form
