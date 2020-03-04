@@ -1,2 +1,2 @@
-$(".edit_comment_body").html("<%= j render 'comments/form', comment: @comment, name: 'edit_comment_form', url:edit_note_comment_path %>");
+$(".edit_comment_body").html("<%= j render 'comments/form', comment: @comment, name: 'edit_comment_form', url:edit_note_comment_path(@note,@comment) %>");
 $('#modal').modal("show");

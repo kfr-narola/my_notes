@@ -1,0 +1,60 @@
+<div class="card">
+  <div class="card-header">
+    <ul class="nav nav-pills " id="pills-tab" role="tablist">
+      <li class="nav-item">
+        <a class="nav-link active" id="pills-my-tab" data-toggle="pill" href="#pills-my" role="tab" aria-controls="pills-my" aria-selected="true">My Notes</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="pills-shared-tab" data-toggle="pill" href="#pills-shared" role="tab" aria-controls="pills-shared" aria-selected="false">Shared with Me</a>
+      </li>
+    </ul>
+  </div>
+
+  <div class="">
+    <div class="tab-content" id="pills-tabContent">
+      <div class="tab-pane fade show active" id="pills-my" role="tabpanel" aria-labelledby="pills-my-tab">
+        <ul class="list-group list-group-flush list-group-item" style="">
+          <li class="list-group-item"><b>Notes List</b></li>
+          <% if notes_list.present?  %>
+            <% notes_list.each do |note| %>
+              <%= render 'note_record', note: note %>
+            <% end %>
+          <% else %>
+            No notes available
+          <% end %>
+        </ul>
+      </div>
+      <div class="tab-pane fade" id="pills-shared" role="tabpanel" aria-labelledby="pills-shared-tab">
+        <ul class="list-group list-group-flush list-group-item" style="">
+          <li class="list-group-item"><b>Shared Notes</b></li>
+          <% if !permission_notes_list.nil? %>
+            <% permission_notes_list.each do | shared_note | %>
+              <% note = shared_note.note %>
+              <li class="list-group-item">
+                <%= link_to note.title, note_path(note), class:"text-dark", remote:true %>
+                <div class="" style="float:right;">
+                  <% if can? :update, note %>
+                  &nbsp;
+                    <%= link_to edit_note_path(note), class:"text-success", remote:true do %>
+                      <%= fa_icon "pencil", class:"ic", "data-toggle":"tooltip", "data-html":"true", title:"Edit this note." %>
+                    <% end %>
+                  <% end %>
+                  <% if can? :delete, note %>
+                  &nbsp;
+                    <%= link_to note, method: :delete, data: { confirm: 'Are you sure?' }, class:"text-danger", "data-toggle":"tooltip", "data-html":"true", title:"Delete this note.", remote:true  do %>
+                      <%= fa_icon "trash", class:"ic" %>
+                    <% end %>
+                  <% end %>
+                </div>
+              </li>
+            <% end %>
+            <% if permission_notes_list.count == 0 %>
+              <li class="list-group-item">No notes available.</li>
+            <% end %>
+          <% end %>
+        </ul>
+      </div>
+      <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab"></div>
+    </div>
+  </div>
+</div>

@@ -97,24 +97,23 @@ class NotesController < ApplicationController
 
   def mark_as_important
     note = current_user.notes.find_by(id: params[:id])
-    note.important = params[:important]
-    note.save
+    note.update(important: params[:status])
     set_sidebar
   end
 
   def autosave
-    current_user.update(autosave:params[:autosave])
+    current_user.update(autosave: params[:status])
     set_sidebar
     respond_to do |format|
       format.js { render :layout => false }
     end
   end
 
-  def form_share_note
+  def share_note
     @note = current_user.notes.find_by(id: params[:id])
   end
 
-  def sharenote
+  def send_note
     note = current_user.notes.find_by(id: params[:id])
     email = params[:email]
     user_edit = params[:user_edit]
@@ -130,24 +129,24 @@ class NotesController < ApplicationController
     else
       User.invite!({ email: email }, current_user)
     end
-    redirect_to root_path, notice: 'Note was shared successfully.'
+    redirect_to authenticated_root, notice: 'Note was shared successfully.'
   end
 
-  def request_note_edit
+  def request_edit_permission
     note = Note.find_by(id:params[:id])
     puts params[:id]
-    url = "http://localhost:3000#{assign_note_edit_path(note, current_user)}"
+    url = assign_edit_permission_note_path(note, current_user)
     subject = "#{ current_user.profile.username } wants edit permission for note #{ note.title }"
     description = "You can grant the edit notes permission here, just follow this link: or igonore for deny permissin.";
     ShareNoteMailer.with(email: current_user.email, subject: subject, url: url, description: description).share_notes_email.deliver_later
     redirect_to root_path, notice: 'Your edit note request sent successfully.'
   end
 
-  def assign_note_edit
+  def assign_edit_permission
     note = current_user.notes.find_by(id:params[:id])
-    user = User.find_by(id:params[:user])
+    user = User.find_by(id:params[:user_id])
     user.permissions.find_by(note_id: note.id).update(access:1)
-    redirect_to root_path, notice: "#{user.profile.username} have assign edit Permission of notes #{note.title} successfully."
+    redirect_to authenticated_root_url, notice: "#{user.profile.username} have assign edit Permission of notes #{note.title} successfully."
   end
 
   private

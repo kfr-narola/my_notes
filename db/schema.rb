@@ -33,18 +33,6 @@ ActiveRecord::Schema.define(version: 2020_03_02_110250) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
-  create_table "admin_users", force: :cascade do |t|
-    t.string "email", default: "", null: false
-    t.string "encrypted_password", default: "", null: false
-    t.string "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["email"], name: "index_admin_users_on_email", unique: true
-    t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
-  end
-
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -73,7 +61,7 @@ ActiveRecord::Schema.define(version: 2020_03_02_110250) do
     t.datetime "updated_at", null: false
     t.integer "status", default: 0
     t.integer "user_id"
-    t.integer "important", default: 0
+    t.boolean "important", default: false
     t.index ["user_id"], name: "index_notes_on_user_id"
   end
 
@@ -135,9 +123,6 @@ ActiveRecord::Schema.define(version: 2020_03_02_110250) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string "unconfirmed_email"
-    t.integer "failed_attempts", default: 0, null: false
-    t.string "unlock_token"
-    t.datetime "locked_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "autosave", default: false
@@ -150,6 +135,7 @@ ActiveRecord::Schema.define(version: 2020_03_02_110250) do
     t.integer "invited_by_id"
     t.integer "invitations_count", default: 0
     t.integer "role", default: 0
+    t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["invitation_token"], name: "index_users_on_invitation_token", unique: true
     t.index ["invitations_count"], name: "index_users_on_invitations_count"

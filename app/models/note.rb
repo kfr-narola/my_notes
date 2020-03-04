@@ -8,7 +8,6 @@ class Note < ApplicationRecord
   belongs_to :user
   # attr_accessors
   # callbacks
-  after_update :remove_note_comments
   # constants
   # enums
   enum status: ['active', 'deactive']
@@ -19,10 +18,4 @@ class Note < ApplicationRecord
   default_scope { where("status = 0").order('created_at DESC') }
   # require
   # validations
-
-  private
-
-  def remove_note_comments
-    self.comments.destroy_all if self.status
-  end
 end
