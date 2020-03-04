@@ -21,5 +21,3 @@
 //= require my_script
 //= require turbolinks
 //= require_tree .
-
-@import "admin/*"

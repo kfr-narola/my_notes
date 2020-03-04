@@ -1,11 +1,11 @@
 class ProfileController < ApplicationController
   before_action :check_valid_user, only: [ :index ]
 
-  def index
+  def show
     @profile = current_user.profile
   end
 
-  def edit
+  def update
     @profile = current_user.profile
     @profile.update(profile_paramas)
     redirect_to profile_path, notice:"Profile Details successfully Updated."

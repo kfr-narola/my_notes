@@ -14,7 +14,7 @@
       <li class="nav-item nav-justify-content-end dropdown dropdown">
         <a class="nav-link dropdown-toggle " href="#" id="navbardrop" data-toggle="dropdown"> Profile </a>
         <div class="dropdown-menu dropdown-menu-right">
-          <%= link_to "Details", profile_path, class: "dropdown-item" %>
+          <%= link_to "Details", profile_path(current_user), class: "dropdown-item" %>
           <div class="dropdown-divider"></div>
           <%= link_to "Logout", destroy_user_session_path, method: :DELETE, class: "dropdown-item" %>
         </div>

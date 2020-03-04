@@ -4,7 +4,7 @@ Rails.application.routes.draw do
     resources :comments
 
     member do
-      get 'mark_as_important/:important', to: "notes#mark_as_important", as: "mark_as_important"
+      get 'mark_as_important/:status', to: "notes#mark_as_important", as: "mark_as_important"
       get 'share_note'
       get 'request_edit_permission/:user_id', to: "notes#request_edit_permission", as: "request_edit_permission"
       get 'assign_edit_permission/:user_id', to: "notes#assign_edit_permission", as: "assign_edit_permission"
@@ -21,7 +21,7 @@ Rails.application.routes.draw do
   devise_for :users
   devise_for :admins
 
-  root_to 'notes#index'
+  root 'notes#index'
   # devise_scope :user do
   #   authenticated :user do
   #     root 'notes#index', as: :authenticated_root

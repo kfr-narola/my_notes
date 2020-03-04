@@ -19,8 +19,9 @@ class CommentsController < ApplicationController
 
   # GET /comments/1/edit
   def edit
-    @note = @comment.note
-    respond_to do |format|
+    @note = Note.find_by(id: params[:note_id])
+    @comment = Comment.find_by(id: params[:id])
+    respond_to do | format |
       format.js { render :layout => false }
     end
   end

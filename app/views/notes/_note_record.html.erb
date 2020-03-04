@@ -1,0 +1,22 @@
+<li class="list-group-item">
+  <%= link_to note.title, note_path(note), class:"text-dark d-inline-block text-truncate note_title", remote:true %>
+  <div class='float-right'>
+    <% title = note.important? ? 'Remove important' : 'Mark important' %>
+    <%= link_to mark_as_important_note_path(note, "#{!note.important?}"), class: "important-#{note.important.to_s}", remote: true do %>
+      <%= fa_icon "star", class:"text-default ic", title: title, data: { 'toggle': 'tooltip', 'html': true } %>
+    <% end %>
+
+    <% if can? :update, note %>
+    &nbsp;
+      <%= link_to edit_note_path(note), class:"text-success", remote:true do %>
+        <%= fa_icon "pencil", class:"ic", "data-toggle":"tooltip", "data-html":"true", title:"Edit this note." %>
+      <% end %>
+    <% end %>
+    <% if can? :delete, note %>
+    &nbsp;
+      <%= link_to note, method: :delete, data: { confirm: 'Are you sure?' }, class:"text-danger", "data-toggle":"tooltip", "data-html":"true", title:"Delete this note.", remote:true  do %>
+        <%= fa_icon "trash", class:"ic" %>
+      <% end %>
+    <% end %>
+  </div>
+</li>

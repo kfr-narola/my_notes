@@ -16,7 +16,7 @@
         <div class="alert alert-info" id="comment_<%= comment.id%>">
           <%= comment.description %>
           <div class="" style="float:right;">
-            <%= link_to edit_note_comment_path(note,comment), class:"text-success" do %>
+            <%= link_to edit_note_comment_path(note,comment), class:"text-success", remote:true do %>
               Edit <%= fa_icon "pencil" %>
             <% end %>
             &nbsp;
