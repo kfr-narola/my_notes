@@ -1,18 +1,17 @@
 
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <%#= link_to admin_index_path, class:"brand-link" do %>
-      <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
-           style="opacity: .8">
+    <%= link_to admins_dashboard_index_path, class:"brand-link" do %>
+      <%= image_tag "admin_logo.png", class: "brand-image img-circle elevation-3" %>
       <span class="brand-text font-weight-light">My Notes</span>
-    <%# end %>
+    <% end %>
 
     <!-- Sidebar -->
     <div class="sidebar">
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img class="img-circle elevation-2" src="icon.jpeg" alt="">
+          <%= image_tag "icon.jpeg", class: "img-circle elevation-2" %>
         </div>
         <div class="info">
           <a href="#" class="d-block"><%= current_admin.email %></a>
@@ -27,16 +26,16 @@
           <li class="nav-item has-treeview menu-open">
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <%#= link_to admin_manage_users_path, class:"nav-link" do %>
-                  <%#= fa_icon "circle nav-icon" %> <p> Users</p>
-                <%# end %>
+                <%= link_to admins_users_path, class:"nav-link" do %>
+                  <%= fa_icon "circle nav-icon" %> <p> Users</p>
+                <% end %>
               </li>
             </ul>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <%#= link_to admin_manage_notes_path, class:"nav-link" do %>
-                  <%#= fa_icon "circle nav-icon" %> <p> Notes</p>
-                <%# end %>
+                <%= link_to admins_notes_path, class:"nav-link" do %>
+                  <%= fa_icon "circle nav-icon" %> <p> Notes</p>
+                <% end %>
               </li>
             </ul>
           </li>

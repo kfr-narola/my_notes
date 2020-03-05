@@ -1,0 +1,30 @@
+<%= form_with(model: profile, url:url, remote: true) do |form| %>
+  <div class="field">
+    <div class="input-group mb-2">
+      <div class="input-group-prepend">
+        <div class="input-group-text">Username</div>
+      </div>
+      <%= form.text_field:username, class:"form-control" %>
+    </div>
+  </div>
+
+  <div class="field">
+    <div class="input-group mb-2">
+      <div class="input-group-prepend">
+        <div class="input-group-text">Phone</div>
+      </div>
+      <%= form.number_field:phone, class:"form-control" %>
+    </div>
+  </div>
+
+  <div class="field">
+    <div class="input-group mb-2">
+      <div class="input-group-prepend">
+        <div class="input-group-text">Birthdate</div>
+      </div>
+      <%= form.text_field:birthdate, class:"form-control datepicker"  %>
+      </div>
+  </div>
+  <%= form.file_field :avatar %>
+  <%= form.submit "Save", class:"btn btn-primary btn-md" %>
+<% end %>

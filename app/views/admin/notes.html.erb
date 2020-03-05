@@ -50,12 +50,16 @@
                     Mail  <%= fa_icon "envelope", class:"ic", "data-toggle":"tooltip", "data-html":"true", title:"Edit this note." %>
                   <% end %>
                   &nbsp;
-                  <%= link_to edit_note_path(note), class:"text-success", remote:true do %>
-                    Edit  <%= fa_icon "pencil", class:"ic", "data-toggle":"tooltip", "data-html":"true", title:"Edit this note." %>
+                  <% if can? :update, note %>
+                    <%= link_to edit_notes_admins_dashboard_path(note), class:"text-success", remote:true do %>
+                      Edit  <%= fa_icon "pencil", class:"ic", "data-toggle":"tooltip", "data-html":"true", title:"Edit this note." %>
+                    <% end %>
+                    &nbsp;
                   <% end %>
-                  &nbsp;
-                  <%= link_to note, method: :delete, data: { confirm: 'Are you sure?' }, class:"text-danger", "data-toggle":"tooltip", "data-html":"true", title:"Delete this note.", remote:true  do %>
-                    Delete  <%= fa_icon "trash", class:"ic" %>
+                  <% if can? :delete, note %>
+                    <%= link_to note, method: :delete, data: { confirm: 'Are you sure?' }, class:"text-danger", "data-toggle":"tooltip", "data-html":"true", title:"Delete this note.", remote:true  do %>
+                      Delete  <%= fa_icon "trash", class:"ic" %>
+                    <% end %>
                   <% end %>
                 </td>
               </tr>

@@ -1,0 +1,59 @@
+<!-- Main content -->
+<section class="content">
+  <div class="container-fluid">
+    <div class="card">
+      <div class="card-body">
+        <table id="manage_notes" class="table table-hover text-center data-table">
+          <thead>
+          <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Comments</th>
+            <th>Shared</th>
+            <th>Tags</th>
+            <th>Owner</th>
+            <th>Action</th>
+          </tr>
+          </thead>
+          <tbody>
+            <% @notes.each do | note |  %>
+              <tr>
+                <td><%= note.id %></td>
+                <td><%= note.title %></td>
+                <td><%= note.comments.count %></td>
+                <td><%= note.permissions.count %></td>
+                <td><%= note.tag_list %></td>
+                <td><%= note.user.profile.username %></td>
+                <td>
+                  <% if can? :update, note %>
+                    <%= link_to edit_admins_note_path(note), class:"text-success", remote:true do %>
+                      Edit  <%= fa_icon "pencil", class:"ic", "data-toggle":"tooltip", "data-html":"true", title:"Edit this note." %>
+                    <% end %>
+                    &nbsp;
+                  <% end %>
+                  <% if can? :delete, note %>
+                    <%= link_to admins_note_path(note), method: :delete, data: { confirm: 'Are you sure?' }, class:"text-danger", "data-toggle":"tooltip", "data-html":"true", title:"Delete this note.", remote:true  do %>
+                      Delete  <%= fa_icon "trash", class:"ic" %>
+                    <% end %>
+                  <% end %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+          <tfoot>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Comments</th>
+            <th>Shared</th>
+            <th>Tags</th>
+            <th>Owner</th>
+            <th>Action</th>
+          </tfoot>
+        </table>
+      </div>
+    </div>
+    <!-- /.card -->
+  </div>
+  <!-- /.container-fluid -->
+</section>
+<!-- /.content -->

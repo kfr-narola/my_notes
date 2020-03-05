@@ -5,11 +5,17 @@
 //= require jquery
 //= require jquery_ujs
 //= require popper
-//= require bootstrap
-//= require activestorage
-//= require bootstrap-datepicker
-//= require bootstrap-tokenfield
-//= require bootstrap-wysihtml5
 //= require my_script
 //= require turbolinks
 //=require_tree ./admin
+
+$(document).on('turbolinks:load', function() {
+  $('.data-table').DataTable({
+    "paging": true,
+    "lengthChange": false,
+    "searching": false,
+    "ordering": true,
+    "info": true,
+    "autoWidth": false,
+  });
+})

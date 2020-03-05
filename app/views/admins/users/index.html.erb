@@ -1,0 +1,79 @@
+<!-- Main content -->
+<section class="content">
+  <div class="container-fluid">
+    <div class="card">
+      <div class="card-body">
+        <table id="manage_users" class="table table-hover text-center" style="width:100%;">
+          <thead>
+            <tr>
+              <th>Profile</th>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Notes</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @users.each do | user |  %>
+              <tr>
+                <td>
+                  <% if user.profile.avatar.attached? %>
+                    <img class="icon" src="<%= rails_blob_path(user.profile.avatar, only_path: true) %>" style="width:30px;height:30px;border-radius:100%;" alt="">
+                  <% else %>
+                    <img class="icon" src="../icon.jpeg" style="width:30px;height:30px;border-radius:100%;" alt="">
+                  <% end %>
+                </td>
+                <td><%= user.id %></td>
+                <td><%= user.profile.username %></td>
+                <td><%= user.email %></td>
+                <td><%= user.notes.count %></td>
+                <td>
+                  <%= link_to "Mail" do %>
+                      <%= fa_icon "envelope", class:"ic" %> Mail
+                  <% end %>
+                    &nbsp;&nbsp;
+                  <% if can? :update, user %>
+                    <%= link_to edit_admins_user_path(user), class:"text-success", remote:true do %>
+                      <%= fa_icon "pencil", class:"ic" %> Edit
+                    <% end %>
+                  <% end %>
+                    &nbsp;&nbsp;
+                  <%= link_to admins_user_path(user),  method: :delete, data: { confirm: 'Are you sure?' }, class:"text-danger" do %>
+                      <%= fa_icon "trash", class:"ic" %> Delete
+                  <% end %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+          <tfoot>
+            <th>Profile</th>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Notes</th>
+            <th>Action</th>
+          </tfoot>
+        </table>
+      </div>
+      <div class="card-footer">
+        <button type="button" class="btn btn-primary btn-sm" name="button">Add New User</button>
+      </div>
+    </div>
+    <!-- /.card -->
+  </div>
+  <!-- /.container-fluid -->
+</section>
+<!-- /.content -->
+<script type="text/javascript">
+    $(function () {
+    $('#manage_users').DataTable({
+      "paging": true,
+      "lengthChange": false,
+      "searching": false,
+      "ordering": true,
+      "info": true,
+      "autoWidth": false,
+    });
+  });
+</script>

@@ -9,6 +9,7 @@ class Note < ApplicationRecord
   # attr_accessors
   # callbacks
   # constants
+  validates :title, presence: true
   # enums
   enum status: ['active', 'deactive']
   # includes
