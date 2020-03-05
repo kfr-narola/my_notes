@@ -35,6 +35,9 @@
           <% if !notice.nil? %>
             <div class="alert alert-success" role="alert">
               <%= notice %>
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
             </div>
             <% end %>
         </div>
@@ -43,12 +46,16 @@
           <% if !alert.nil? %>
             <div class="alert alert-danger" role="alert">
               <%= alert %>
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
             </div>
           <% end %>
         </div>
 
       </div>
     </div>
+    <%= render "shared/dashboard_breadcrumb" %>
     <%= yield %>
 
   </div>

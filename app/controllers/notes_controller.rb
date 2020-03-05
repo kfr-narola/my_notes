@@ -21,8 +21,10 @@ class NotesController < ApplicationController
   # GET /notes/new
   def new
     @note = current_user.notes.new
-    respond_to do |format|
-      format.js { redirect_to edit_note_path(@note) }
+    if current_user.autosave
+      respond_to do |format|
+        format.js { redirect_to edit_note_path(@note) }
+      end
     end
   end
 

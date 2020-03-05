@@ -9,12 +9,11 @@
   <%= csp_meta_tag %>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <%= stylesheet_link_tag    'admin', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= stylesheet_link_tag 'admin', media: 'all', 'data-turbolinks-track': 'reload' %>
   <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css">
   <%= javascript_include_tag 'admin', 'data-turbolinks-track': 'reload' %>
 </head>
   <body class="hold-transition login-page">
-    <!-- /.login-logo -->
-  <%= yield %>
+    <%= yield %>
 </body>
 </html>

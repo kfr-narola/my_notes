@@ -1,10 +1,12 @@
 Rails.application.routes.draw do
   devise_for :users
-  devise_for :admins, skip: %i[registrations passwords]
+  devise_for :admins, skip: %i[registrations passwords],
+                      controllers: { sessions: 'admins/sessions' }
 
   authenticated :admin do
     root 'admins/dashboard#index', as: :authenticated_admin_root
   end
+
 
   devise_scope :user do
     authenticated :user do
@@ -39,6 +41,7 @@ Rails.application.routes.draw do
     resources :notes, except: %i[create new] do
       get 'share_note'
     end
+
     resources :users
   end
 end
