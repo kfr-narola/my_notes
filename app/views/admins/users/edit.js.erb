@@ -1,4 +1,4 @@
-$(".modal-body").html("<%= j render 'form', profile:@user.profile, id: 'form_edit' %>");
+$(".modal-body").html("<%= j render 'form', profile:@user.profile, url:admins_user_path, id: 'form_edit' %>");
 $(".modal-title").html("Edit User");
 $('#modal').modal('show');
 

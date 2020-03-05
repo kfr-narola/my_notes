@@ -35,11 +35,11 @@
                     &nbsp;&nbsp;
                   <% if can? :update, user %>
                     <%= link_to edit_admins_user_path(user), class:"text-success", remote:true do %>
-                      Edit <%= fa_icon "pencil", class:"ic" %>
+                      <%= fa_icon "pencil", class:"ic" %> Edit
                     <% end %>
                   <% end %>
                     &nbsp;&nbsp;
-                  <%= link_to "Delete",  method: :delete, data: { confirm: 'Are you sure?' }, class:"text-danger" do %>
+                  <%= link_to admins_user_path(user),  method: :delete, data: { confirm: 'Are you sure?' }, class:"text-danger" do %>
                       <%= fa_icon "trash", class:"ic" %> Delete
                   <% end %>
                 </td>
@@ -55,6 +55,9 @@
             <th>Action</th>
           </tfoot>
         </table>
+      </div>
+      <div class="card-footer">
+        <button type="button" class="btn btn-primary btn-sm" name="button">Add New User</button>
       </div>
     </div>
     <!-- /.card -->
