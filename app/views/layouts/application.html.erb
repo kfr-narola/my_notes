@@ -34,14 +34,11 @@
       </div>
     </div>
     <%= yield %>
+    <%= render 'shared/modal' %>
   </body>
-  <%= render 'shared/modal' %>
   <script type="text/javascript">
-
     $('#modal').on('show.bs.modal', function (e) {
-
       $('input.tokenize').tokenfield();
-
       $('.wysihtml5').each(function(i, elem) {
         $(elem).wysihtml5({
           toolbar:{
@@ -52,9 +49,6 @@
             'html': true }
           });
       });
-
-
     })
-
   </script>
 </html>
