@@ -7,6 +7,8 @@
 //= require popper
 //= require my_script
 //= require turbolinks
+//= require bootstrap-tokenfield
+//= require bootstrap-wysihtml5
 //=require_tree ./admin
 
 $(document).on('turbolinks:load', function() {

@@ -50,6 +50,10 @@ Rails.application.routes.draw do
       get 'share_note'
     end
 
-    resources :users
+    resources :users do
+      get 'new_mail'
+      post 'send_mail'
+    end
+
   end
 end

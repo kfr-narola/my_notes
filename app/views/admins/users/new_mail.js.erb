@@ -1,0 +1,7 @@
+$(".modal-body").html("<%= j render 'compose_mail', email: @user.email %>");
+$(".modal-title").html("Send Mail User");
+$('#modal').modal('show');
+
+
+
+var autoupdate = 0;

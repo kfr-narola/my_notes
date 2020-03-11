@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body style="background-color:lightblue;">
+    <center>
+    <h1>" <%= @subject %> ".</h1>
+    <hr style="width:50%;">
+    <p>
+      <%= simple_format(@description) %>
+      <br/>
+    </p>
+    <hr/>
+    <ul>
+      <li>
+        <b>attachments:</b>
+        <% @attach_list.each do | key, value | %>
+          <%= link_to key, value %><br>
+        <% end %>
+      </li>
+    </ul>
+
+    </center>
