@@ -70,28 +70,24 @@
 
   </div>
   <%= render 'shared/modal' %>
-  <script type="text/javascript">
-
-    $('#modal').on('show.bs.modal', function (e) {
-
-      // $('input.tokenize').tokenfield();
-      //
-      // $('.wysihtml5').each(function(i, elem) {
-      //   $(elem).wysihtml5({
-      //     toolbar:{
-      //       "fa": true,
-      //       "font-styles": true,
-      //       'blockquote': false,
-      //       'color': true,
-      //       'html': true }
-      //     });
-      // });
-    })
-
-  </script>
 <!-- ./wrapper -->
 
 </body>
 
+<script type="text/javascript">
+  $('#modal').on('show.bs.modal', function (e) {
+    $('input.tokenize').tokenfield();
+    $('.wysihtml5').each(function(i, elem) {
+      $(elem).wysihtml5({
+        toolbar:{
+          "fa": true,
+          "font-styles": true,
+          'blockquote': false,
+          'color': true,
+          'html': true }
+        });
+    });
+  })
+</script>
 
 </html>
