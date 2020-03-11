@@ -1,0 +1,14 @@
+<%= form_with(model: message, url: url, remote:true) do |form| %>
+<div class="form-row">
+  <div class="col-11">
+    <%= form.text_area :description, class:"form-control" %>
+    <%= form.hidden_field :sender_id %>
+    <%= form.hidden_field :receiver_id %>
+    <%= fa_icon "paperclip" %> Attachment
+    <%= form.file_field :img, name:"img[]", class: "form-control", multiple:true %>
+  </div>
+  <div class="col">
+    <%= form.submit "Send", class:"btn btn-primary" %>
+  </div>
+</div>
+<% end %>

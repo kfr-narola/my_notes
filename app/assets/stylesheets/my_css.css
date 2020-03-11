@@ -35,3 +35,31 @@ h2{
 .important-false{
   color: black;
 }
+.message_title{
+  margin: 5px;
+}
+.message{
+  margin: 5px;
+}
+.sender{
+  background-color: gray;
+  text-align: right;
+  margin: 5px;
+  padding: 5px;
+  border-radius: 7px 7px 0px 7px;
+}
+.receiver{
+  background-color: lightgray;
+  text-align: left;
+  margin: 5px;
+  padding: 5px;
+  border-radius: 7px 7px 7px 0px;
+}
+.message_box{
+  margin: 7px;
+  padding: 4px;
+}
+.msg_textbox{
+  bottom: 0;
+  position: fixed;
+}

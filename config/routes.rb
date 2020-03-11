@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'rooms/show'
   devise_for :users
   devise_for :admins, skip: %i[registrations passwords],
                       controllers: { sessions: 'admins/sessions' }
@@ -35,8 +36,15 @@ Rails.application.routes.draw do
   end
   resources :profile, only: %i[show edit update]
 
+  resources :messages, only: %i[index show create new]
+
+
+
+
   namespace :admins do
     resources :dashboard, only: %i[index]
+
+    resources :message, only: %i[index]
 
     resources :notes, except: %i[create new] do
       get 'share_note'

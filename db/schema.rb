@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_02_110250) do
+ActiveRecord::Schema.define(version: 2020_03_07_044111) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -52,6 +52,16 @@ ActiveRecord::Schema.define(version: 2020_03_02_110250) do
     t.datetime "updated_at", null: false
     t.integer "status", default: 0
     t.index ["note_id"], name: "index_comments_on_note_id"
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "sender_id"
+    t.integer "receiver_id"
+    t.index ["receiver_id"], name: "index_messages_on_receiver_id"
+    t.index ["sender_id"], name: "index_messages_on_sender_id"
   end
 
   create_table "notes", force: :cascade do |t|
