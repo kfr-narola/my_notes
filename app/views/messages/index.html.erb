@@ -1,0 +1,31 @@
+<div class="container-fluid">
+  <div class="row justify-content-start " style="">
+    <div class="col-sm-3" id="sidebar" style="position:fixed;">
+      <div class="card">
+        <ul class="list-group list-group-flush list-group-item" style="">
+          <li class="list-group-item"><b>Notes List</b></li>
+          <% @users_list.each do | user | %>
+            <li class="list-group-item"><%= link_to user.profile.username, message_path(user), class:"text-primary", remote:true %></li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="row justify-content-end">
+    <div class="col align-self-center col-sm-9" style="">
+      <div class="" id="note_body">
+        <div class="card">
+          <div class="card-header" id="message_header">
+            Chatbox
+          </div>
+          <div class="card-body" id="message_body" style="height:330px;overflow:auto;">
+            You have not selected any chats.
+          </div>
+          <div class="card-footer" id="message_footer">
+            footer
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

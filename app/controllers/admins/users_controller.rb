@@ -9,6 +9,16 @@ class Admins::UsersController < AdminController
     @user = User.find_by(id:params[:id])
   end
 
+  def new
+    @current_ability ||= Ability.new(current_admin)
+    @user = User.new
+  end
+
+  def create
+    @current_ability ||= Ability.new(current_admin)
+    @user = User.create
+  end
+
   def update
     @current_ability ||= Ability.new(current_admin)
     @profile = User.find_by(id:params[:id]).profile

@@ -11,6 +11,15 @@
     </ul>
     <!-- Dropdown -->
     <ul class="navbar-nav my-2 my-lg-0">
+      <li class="nav-item">
+        <a class="nav-link" href="#"><text id="current_user"><%= current_user.profile.username %></text><input type="hidden" id="user_id_for_chat" value="<%= current_user.id %>">
+          <% if current_user.profile.avatar.attached? %>
+            <img class="icon" id="user_profile" src="<%= Rails.application.routes.url_helpers.rails_blob_path(current_user.profile.avatar, only_path: true) %>" style="width:30px;height:30px;border-radius:100%;" alt="">
+          <% else %>
+            <img class="icon" src="icon.jpeg" style="width:30px;height:30px;border-radius:100%;" alt="">
+          <% end %>
+          </a>
+      </li>
       <li class="nav-item nav-justify-content-end dropdown dropdown">
         <a class="nav-link dropdown-toggle " href="#" id="navbardrop" data-toggle="dropdown"> Profile </a>
         <div class="dropdown-menu dropdown-menu-right">
