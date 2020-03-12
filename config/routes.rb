@@ -44,10 +44,11 @@ Rails.application.routes.draw do
   namespace :admins do
     resources :dashboard, only: %i[index]
 
-    resources :message, only: %i[index]
+    resources :messages, only: %i[index]
 
     resources :notes, except: %i[create new] do
       get 'share_note'
+
     end
 
     resources :users do

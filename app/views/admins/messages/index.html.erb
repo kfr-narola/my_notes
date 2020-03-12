@@ -10,7 +10,9 @@
             ChatRoom
           </div>
           <div class="card-body">
-
+            <% @users.each do | user | %>
+              <a href="#"><li> <%= user.profile.username %></li></a>
+            <% end %>
           </div>
         </div>
       </div>
@@ -22,7 +24,7 @@
             Messages
           </div>
           <div class="card-body">
-
+                                                                        
           </div>
           <div class="card-footer">
             <textarea name="name" rows="2" class="form-control"></textarea>

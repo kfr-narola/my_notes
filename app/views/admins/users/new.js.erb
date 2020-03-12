@@ -1,0 +1,6 @@
+$(".modal-body").html("<%= j render 'form', profile:@user.profile, url:admins_users_path, id: 'form_edit' %>");
+$(".modal-title").html("Edit User");
+$('#modal').modal('show');
+
+
+var autoupdate = 0;

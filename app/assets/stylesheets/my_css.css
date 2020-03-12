@@ -6,6 +6,10 @@ h2{
 }
 .ic{
   transition: 1s;
+  border-radius:100%;
+  padding: 2px;
+  margin:4px;
+  border: 2px solid lightblue;
 }
 .ic:hover{
   transition: 0.2s;
@@ -62,4 +66,11 @@ h2{
 .msg_textbox{
   bottom: 0;
   position: fixed;
+}
+.msg_image{
+  max-width: 300px;
+  max-height: 300px;
+}
+.msg_heading{
+  font-size: 12px;
 }

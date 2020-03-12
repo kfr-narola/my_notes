@@ -1,18 +1,31 @@
+<center>
+  <img class="ic" id="sender_profile" src="<%= rails_blob_path(@user.profile.avatar, only_path: true) %>" style="width:50px;height:50px;" alt="">
+  <img class="ic" src="<%= rails_blob_path(current_user.profile.avatar, only_path: true) %>" style="margin-left:-20px;width:50px;height:50px;" alt="">
+</center>
+<div class="" style="display:none;" id="current_sender">
+  <%= @user.profile.username %>
+</div>
+
 <% messages.each do | message | %>
   <div class="row <%= message.sender.id == current_user.id ? "justify-content-end" : "justify-content-start" %>">
     <% if message.sender.id != current_user.id  %>
-      <!-- <div class="col-1">
-        <img class="icon" src="<% rails_blob_path(message.sender.profile.avatar, only_path: true) %>" style="width:50px;height:50px;border-radius:100%;" alt=""> %>
-      </div> -->
+      <div class="col-1">
+        <img class="ic" src="<%= rails_blob_path(message.sender.profile.avatar, only_path: true) %>" style="width:50px;height:50px;" alt="">
+      </div>
     <% end %>
-    <div class="col-4 <%= message.sender.id == current_user.id ? "sender" : "receiver" %>">
-      <!-- <p class=""><% message.sender.profile.username %></p> -->
-      <p class=""><%= message.description %></p>
+    <div class="col-auto <%= message.sender.id == current_user.id ? "sender" : "receiver" %>" style="padding:0px 8px 5px 8px;min-width:70px;">
+      <text class="msg_heading"><%= message.sender.profile.username %></text><br>
+      <text class=""><%= message.description %></text>
+      <% if message.image.attached? %>
+        <center>
+          <%= image_tag message.image, class:"msg_image" %>
+        </center>
+      <% end %>
     </div>
     <% if message.sender.id == current_user.id  %>
-      <!-- <div class="col-1">
-        <img class="icon" src="<% rails_blob_path(message.sender.profile.avatar, only_path: true) %>" style="width:50px;height:50px;border-radius:100%;" alt="">
-      </div> -->
+      <div class="col-1">
+        <img class="ic" src="<%= rails_blob_path(message.sender.profile.avatar, only_path: true) %>" style="width:50px;height:50px;" alt="">
+      </div>
     <% end %>
   </div>
 <% end %>

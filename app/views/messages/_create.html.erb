@@ -1,7 +1,7 @@
 <div class="row <%= message.sender.id == current_user.id ? "justify-content-end" : "justify-content-start" %>">
   <% if message.sender.id != current_user.id  %>
     <div class="col-1">
-      <img class="icon" src="<%= rails_blob_path(message.sender.profile.avatar, only_path: true) %>" style="width:50px;height:50px;border-radius:100%;" alt="">
+      <img class="ic" src="<%= rails_blob_path(message.sender.profile.avatar, only_path: true) %>" style="width:50px;height:50px;border-radius:100%;" alt="">
     </div>
   <% end %>
   <div class="col-4 <%= message.sender.id == current_user.id ? "sender" : "receiver" %>">
@@ -10,7 +10,7 @@
   </div>
   <% if message.sender.id == current_user.id  %>
     <div class="col-1">
-      <img class="icon" src="<%= rails_blob_path(message.sender.profile.avatar, only_path: true) %>" style="width:50px;height:50px;border-radius:100%;" alt="">
+      <img class="ic" src="<%= rails_blob_path(message.sender.profile.avatar, only_path: true) %>" style="width:50px;height:50px;border-radius:100%;" alt="">
     </div>
   <% end %>
 </div>

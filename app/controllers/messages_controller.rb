@@ -11,16 +11,32 @@ class MessagesController < ApplicationController
   end
 
   def create
+    # attach = params[:message][:image]
+    # url = Hash.new
+    # cnt = 0
+    # puts params
+    # # puts file.original_filename
+    # # file_name = Time.now.to_i.to_s + file.original_filename
+    # # path = File.join(Rails.root.join("public", "mail", "attach", file_name))
+    # # File.open(path, "wb") { |f| f.write(file.read) }
+    # # url.store(file_name, path)
+
+
     msg = Message.create(message_params)
-    ActionCable.server.broadcast "chat_channel", message: msg.description, sender: msg.sender_id, receiver:msg.receiver_id
-    @last_msg = msg
-    respond_to do |format|
+
+    if msg.image.attached?
+      ActionCable.server.broadcast "chat_channel", message: msg.description, sender: msg.sender_id, receiver:msg.receiver_id, image: url_for(msg.image)
+    else
+      ActionCable.server.broadcast "chat_channel", message: msg.description, sender: msg.sender_id, receiver:msg.receiver_id
+    end
+    respond_to do | format |
+      format.html { render :layout => false }
       format.js { render :layout => false }
     end
   end
 
   private
   def message_params
-    params.require(:message).permit(:description, :sender_id, :receiver_id)
+    params.require(:message).permit(:description, :sender_id, :receiver_id, :image)
   end
 end
