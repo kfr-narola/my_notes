@@ -1,14 +1,14 @@
-<div class="row <%= message.sender.id == current_user.id ? "justify-content-end" : "justify-content-start" %>">
-  <% if message.sender.id != current_user.id  %>
+<div class="row <%= message.sender == current_user ? "justify-content-end" : "justify-content-start" %>">
+  <% if message.sender != current_user  %>
     <div class="col-1">
       <img class="ic" src="<%= rails_blob_path(message.sender.profile.avatar, only_path: true) %>" style="width:50px;height:50px;border-radius:100%;" alt="">
     </div>
   <% end %>
-  <div class="col-4 <%= message.sender.id == current_user.id ? "sender" : "receiver" %>">
+  <div class="col-4 <%= message.sender == current_user ? "sender" : "receiver" %>">
     <!-- <p class=""><% message.sender.profile.username %></p> -->
     <p class=""><%= message.description %></p>
   </div>
-  <% if message.sender.id == current_user.id  %>
+  <% if message.sender == current_user  %>
     <div class="col-1">
       <img class="ic" src="<%= rails_blob_path(message.sender.profile.avatar, only_path: true) %>" style="width:50px;height:50px;border-radius:100%;" alt="">
     </div>

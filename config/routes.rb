@@ -38,17 +38,13 @@ Rails.application.routes.draw do
 
   resources :messages, only: %i[index show create new]
 
-
-
-
   namespace :admins do
     resources :dashboard, only: %i[index]
 
-    resources :messages, only: %i[index]
+    resources :messages, only: %i[index show create new]
 
     resources :notes, except: %i[create new] do
       get 'share_note'
-
     end
 
     resources :users do

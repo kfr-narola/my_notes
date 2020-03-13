@@ -1,0 +1,33 @@
+<%= form_with(model: message, url: url, id: "my_form", class: "my_form", multipart: true) do |form| %>
+<div class="form-row">
+  <div class="col-11">
+    <%= form.text_area :description, class:"form-control" %>
+    <%= form.hidden_field :sender_id %>
+    <%= form.hidden_field :receiver_id %>
+    <%= form.hidden_field :receiver_type, value:"User" %>
+    <%= fa_icon "paperclip" %> Attachment
+    <%= form.file_field :image, class: "form-control" %>
+  </div>
+  <div class="col">
+    <%= form.button "Send", class:"btn btn-primary", id: 'button', type: 'button' %>
+  </div>
+</div>
+<% end %>
+<script type="text/javascript">
+  $(document).ready(function(){
+    $("#button").click(function(){
+      var formData = new FormData($("#my_form")[0]);
+      console.log(formData)
+      $.ajax({
+        type: "POST",
+        url: "<%= url %>",
+        data: formData,
+        processData: false,  // Important!
+        contentType: false,
+        success: function(data){
+          $("#my_form").trigger("reset");
+        }
+      }); //end of ajax
+    });// end of click function
+  });//end of jquery
+</script>

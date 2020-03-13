@@ -5,7 +5,11 @@
         <ul class="list-group list-group-flush list-group-item" style="">
           <li class="list-group-item"><b>Notes List</b></li>
           <% @users_list.each do | user | %>
-            <li class="list-group-item"><%= link_to user.profile.username, message_path(user), class:"text-primary", remote:true %></li>
+            <li class="list-group-item"><%= link_to user.profile.username, message_path(id:user.id, sender_type:"User"), class:"text-primary", remote:true %></li>
+          <% end %>
+          <hr>
+          <% @admin_list.each do | admin | %>
+            <li class="list-group-item"><%= link_to admin.username, message_path(id:admin.id, sender_type:"Admin"), class:"text-primary", remote:true %></li>
           <% end %>
         </ul>
       </div>

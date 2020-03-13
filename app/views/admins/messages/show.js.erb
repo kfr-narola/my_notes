@@ -1,0 +1,4 @@
+$("#message_body").html("<%= j render 'show', messages: @messages %>");
+$("#message_header").html("<%= @user.profile.username %>");
+$("#id_of_receiver").val("<%= @user.id %>");
+$("#message_footer").html("<%= j render 'form', url:admins_messages_path(format: :js), message: @new_message %>");

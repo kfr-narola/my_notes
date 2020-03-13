@@ -6,10 +6,10 @@ h2{
 }
 .ic{
   transition: 1s;
-  border-radius:100%;
+  /* border-radius:100%;
   padding: 2px;
   margin:4px;
-  border: 2px solid lightblue;
+  border: 2px solid lightblue; */
 }
 .ic:hover{
   transition: 0.2s;
@@ -73,4 +73,11 @@ h2{
 }
 .msg_heading{
   font-size: 12px;
+}
+.icon{
+  transition: 1s;
+  border-radius:100%;
+  padding: 2px;
+  margin:4px;
+  border: 2px solid lightblue;
 }

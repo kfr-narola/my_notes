@@ -11,7 +11,7 @@
           </div>
           <div class="card-body">
             <% @users.each do | user | %>
-              <a href="#"><li> <%= user.profile.username %></li></a>
+              <li class="list-group-item"><%= link_to user.profile.username, admins_message_path(id:user.id, sender_type:"User"), class:"text-primary", remote:true %></li>
             <% end %>
           </div>
         </div>
@@ -19,17 +19,17 @@
       <!-- ./col -->
       <div class="col-lg-9 col-6">
         <!-- small box -->
-        <div class="card" style="height:400px;">
-          <div class="card-header">
-            Messages
+          <div class="card" style="height:410px;">
+            <div class="card-header" id="message_header">
+              Chatbox
+            </div>
+            <div class="card-body" id="message_body" style="height:330px;overflow:auto;">
+              You have not selected any chats.
+            </div>
+            <div class="card-footer" id="message_footer">
+              footer
+            </div>
           </div>
-          <div class="card-body">
-                                                                        
-          </div>
-          <div class="card-footer">
-            <textarea name="name" rows="2" class="form-control"></textarea>
-          </div>
-        </div>
       </div>
     </div>
     <!-- /.row -->
