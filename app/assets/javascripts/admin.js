@@ -10,7 +10,8 @@
 //= require bootstrap-tokenfield
 //= require bootstrap-wysihtml5
 //=require_tree ./admin
-
+//= require_tree ./channels
+//= require ./cable.js
 $(document).on('turbolinks:load', function() {
   $('.data-table').DataTable({
     "paging": true,

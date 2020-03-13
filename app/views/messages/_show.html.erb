@@ -1,31 +1,73 @@
 <center>
-  <img class="ic" id="sender_profile" src="<%= rails_blob_path(@user.profile.avatar, only_path: true) %>" style="width:50px;height:50px;" alt="">
-  <img class="ic" src="<%= rails_blob_path(current_user.profile.avatar, only_path: true) %>" style="margin-left:-20px;width:50px;height:50px;" alt="">
+  <% if @user.class.name == "Admin" %>
+    <img class="icon" id="sender_profile" src="<%= rails_blob_path(@user.avatar, only_path: true) %>" style="width:50px;height:50px;" alt="">
+  <% else %>
+    <img class="icon" id="sender_profile" src="<%= rails_blob_path(@user.profile.avatar, only_path: true) %>" style="width:50px;height:50px;" alt="">
+  <% end %>
+  <img class="icon" src="<%= rails_blob_path(current_user.profile.avatar, only_path: true) %>" style="margin-left:-20px;width:50px;height:50px;" alt="">
 </center>
 <div class="" style="display:none;" id="current_sender">
-  <%= @user.profile.username %>
+  <% if @user.class.name == "Admin" %>
+    <%= @user.username %>
+  <% else %>
+    <%= @user.profile.username %>
+  <% end %>
 </div>
 
-<% messages.each do | message | %>
-  <div class="row <%= message.sender.id == current_user.id ? "justify-content-end" : "justify-content-start" %>">
-    <% if message.sender.id != current_user.id  %>
-      <div class="col-1">
-        <img class="ic" src="<%= rails_blob_path(message.sender.profile.avatar, only_path: true) %>" style="width:50px;height:50px;" alt="">
+<% if @user.class.name == "User" %>
+  <% messages.each do | message | %>
+    <div class="row <%= message.sender == current_user ? "justify-content-end" : "justify-content-start" %>">
+      <% if message.sender != current_user  %>
+        <div class="col-1">
+          <img class="icon" src="<%= rails_blob_path(message.sender.profile.avatar, only_path: true) %>" style="width:50px;height:50px;" alt="">
+        </div>
+      <% end %>
+      <div class="col-auto <%= message.sender == current_user ? "sender" : "receiver" %>" style="padding:0px 8px 5px 8px;min-width:70px;">
+        <text class="msg_heading"><%= message.sender.profile.username %></text><br>
+        <text class=""><%= message.description %></text>
+        <% if message.image.attached? %>
+          <center>
+            <%= image_tag message.image, class:"msg_image" %>
+          </center>
+        <% end %>
       </div>
-    <% end %>
-    <div class="col-auto <%= message.sender.id == current_user.id ? "sender" : "receiver" %>" style="padding:0px 8px 5px 8px;min-width:70px;">
-      <text class="msg_heading"><%= message.sender.profile.username %></text><br>
-      <text class=""><%= message.description %></text>
-      <% if message.image.attached? %>
-        <center>
-          <%= image_tag message.image, class:"msg_image" %>
-        </center>
+      <% if message.sender.id == current_user.id  %>
+        <div class="col-1">
+          <img class="icon" src="<%= rails_blob_path(message.sender.profile.avatar, only_path: true) %>" style="width:50px;height:50px;" alt="">
+        </div>
       <% end %>
     </div>
-    <% if message.sender.id == current_user.id  %>
-      <div class="col-1">
-        <img class="ic" src="<%= rails_blob_path(message.sender.profile.avatar, only_path: true) %>" style="width:50px;height:50px;" alt="">
+  <% end %>
+<% end %>
+
+<% if @user.class.name == "Admin" %>
+  <% messages.each do | message | %>
+    <div class="row <%= message.sender == current_user ? "justify-content-end" : "justify-content-start" %>">
+      <% if message.sender != current_user  %>
+        <div class="col-1">
+          <img class="icon" src="<%= rails_blob_path(message.sender.avatar, only_path: true) %>" style="width:50px;height:50px;" alt="">
+        </div>
+      <% end %>
+      <div class="col-auto <%= message.sender == current_user ? "sender" : "receiver" %>" style="padding:0px 8px 5px 8px;min-width:70px;">
+        <text class="msg_heading">
+          <% if @user.class.name == "Admin" %>
+            <%= @user.username %>
+          <% else %>
+            <%= @user.profile.username %>
+          <% end %>
+        </text><br>
+        <text class=""><%= message.description %></text>
+        <% if message.image.attached? %>
+          <center>
+            <%= image_tag message.image, class:"msg_image" %>
+          </center>
+        <% end %>
       </div>
-    <% end %>
-  </div>
+      <% if message.sender == current_user  %>
+        <div class="col-1">
+          <img class="icon" src="<%= rails_blob_path(message.sender.profile.avatar, only_path: true) %>" style="width:50px;height:50px;" alt="">
+        </div>
+      <% end %>
+    </div>
+  <% end %>
 <% end %>
